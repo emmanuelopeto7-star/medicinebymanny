@@ -1,5 +1,7 @@
 import react from 'react'
 import { Link } from 'react-router-dom'
+import { ShoppingCart } from 'lucide-react';
+
 
 function Navbar() {
     return (
@@ -8,9 +10,10 @@ function Navbar() {
             <div className="flex gap-4">
                 <Link to= "/" className="bg-white text-purple-600 font-bold px-4 py-2 rounded-full hover:scale-105 transition-transform shadow-lg">Home</Link>
                 <Link to= "/Medicines" className="bg-white text-purple-600 font-bold px-4 py-2 rounded-full hover:scale-105 transition-transform shadow-lg">Medicines</Link>
-                <Link to= "/Cart" className="bg-white text-purple-600 font-bold px-4 py-2 rounded-full hover:scale-105 transition-transform shadow-lg">Cart</Link>
+                <Link to= "/Cart" className="bg-white text-purple-600 font-bold px-4 py-2 rounded-full hover:scale-105 transition-transform shadow-lg"><ShoppingCart /></Link>
                 <Link to="/Login" className="bg-white text-purple-600 font-bold px-4 py-2 rounded-full hover:scale-105 transition-transform shadow-lg">Login</Link>
             </div>
+    
         </nav>
     )
 }
