@@ -4,10 +4,12 @@ import { useAuth } from '../Context/AuthContext'
 import { useNavigate } from 'react-router-dom'
 import { signOut } from 'firebase/auth'
 import { auth } from '../firebase'
+import { useAuthState } from 'react-firebase-hooks/auth'
 
 function Home() {
-  const { currentUser } = useAuth()
+  
   const navigate = useNavigate()
+  const [user]=useAuthState(auth)
 
   const handleSignOut = async () => {
     try {
@@ -25,7 +27,11 @@ function Home() {
     <p className= "text-xl text-white mb-4">Your trusted online pharmacy.Get your Drugs delivered to your doorstep!</p>
     <div className= "flex gap-4">
       <Link to= "/Medicines" className= "bg-white text-purple-600 font-bold px-6 py-3 rounded-full hover:scale-105 shadow-lg text-lg">Browse Medicines</Link>
+      {user ? (
+        <button onClick={handleSignOut} className= "bg-white text-purple-600 font-bold px-6 py-3 rounded-full hover:scale-105 shadow-lg text-lg">Log Out</button>
+      ) : (
         <Link to= "/Login" className= "bg-white text-purple-600 font-bold px-6 py-3 rounded-full hover:scale-105 shadow-lg text-lg">Login</Link>
+      )}
     </div>
     <br />
     <div className= "grid grid-cols-2 justify-center gap-6 px-6 pb-20">

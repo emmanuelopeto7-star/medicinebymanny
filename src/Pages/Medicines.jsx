@@ -18,6 +18,7 @@ const Medicines = () => {
             try {
                 const snapshot = await getDocs(collection(db, 'medicines'))
                 const list = snapshot.docs.map(doc => ({id: doc.id, ...doc.data()}))
+                console.log(list[0])
                 setMedicines(list)
                 setLoading(false)
             }

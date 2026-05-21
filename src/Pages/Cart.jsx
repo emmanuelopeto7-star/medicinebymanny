@@ -2,6 +2,7 @@ import React from 'react'
 import { useSelector, useDispatch} from 'react-redux'
 import { removeFromCart, clearCart } from '../Store/cartSlice'
 
+
 function Cart() {
   const cartItems = useSelector(state => state.cart.items)
 
@@ -23,6 +24,9 @@ function Cart() {
               <h2 className="text-xl font-bold text-purple-600">{item.name}</h2>
               <p className="text-gray-600">Quantity: {item.quantity}</p>
               <p className="text-pink-600 font-bold">Price: ${(item.price * item.quantity).toFixed(2)}</p>
+              <p className="text-sm text-gray-400">Available: {item.stock}</p>
+              <p className="text-sm text-gray-400">Category: {item.category}</p>
+              {item.prescriptionRequired && <p className="text-sm text-red-500">Prescription required</p>}
             </div>
             <button
               onClick={() => dispatch(removeFromCart(item.id))}
