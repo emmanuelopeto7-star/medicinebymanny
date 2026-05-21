@@ -1,7 +1,23 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { useAuth } from '../Context/AuthContext'
+import { useNavigate } from 'react-router-dom'
+import { signOut } from 'firebase/auth'
+import { auth } from '../firebase'
 
 function Home() {
+  const { currentUser } = useAuth()
+  const navigate = useNavigate()
+
+  const handleSignOut = async () => {
+    try {
+      await signOut(auth)
+      navigate('/Login')
+    } catch (error) {
+      console.error('Error signing out:', error)
+    }
+  }
+
   return (
     <>
     <div className= "flex flex-col items-center justify-center text-center py-20 px-6">

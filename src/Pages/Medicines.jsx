@@ -5,10 +5,13 @@ import { useNavigate } from 'react-router-dom'
 import {collection, getDocs} from 'firebase/firestore'
 import {db} from '../firebase'
 import { useState, useEffect } from 'react'
+import { useDispatch } from 'react-redux'
+import { addToCart } from '../Store/cartSlice'
 
 const Medicines = () => {
     const [medicines, setMedicines] = useState([])
     const [loading, setLoading] = useState(true)
+    const dispatch = useDispatch()
 
     useEffect(() => {
         const fetchMedicines = async () => {
@@ -44,7 +47,10 @@ const Medicines = () => {
                             <span className="text-lg text-gray-500">In stock: {medicine.stock}</span>
                             <span className="text-sm text-gray-400 block mt-2">Category: {medicine.category}</span>
                             {medicine.prescriptionRequired && <span className="text-sm text-red-500 block mt-2">Prescription required</span>}
-                            <button className="w-full bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold p-3 rounded-2xl hover:scale-105 transition-transform shadow-lg">
+                            <button 
+                                onClick={() => dispatch(addToCart(medicine))}
+                                className="w-full bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold p-3 rounded-2xl hover:scale-105 transition-transform shadow-lg"
+                            >
                                 Add to Cart
                             </button>
                         </div>
