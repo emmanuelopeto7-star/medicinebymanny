@@ -1,9 +1,11 @@
 import React from 'react'
-import { useSelector} from 'react-redux'
+import { useSelector, useDispatch} from 'react-redux'
 import { removeFromCart } from '../store/cartSlice'
+import { clearCart } from '../store/cartSlice'
 
 function Cart() {
   const cartItems = useSelector(state => state.cart.items)
+
   const dispatch = useDispatch()
 
   const total = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0)
